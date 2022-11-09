@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+<Properties>
+    <Property name="log-path">C:\Users\kalees\Desktop\TeleApps\E-Library logs</Property>
+</Properties>
+<Appenders>
+
+    <!-- console appender -->
+    <Console name="console-log" target="SYSTEM_OUT">
+        <PatternLayout pattern="%d{dd/MM/yyyy HH:mm:ss:SSS} %5p - %m%n"/>
+    </Console>
+
+    <!-- file appender -->
+    <RollingFile name="trace" fileName="${log-path}/trace.log"
+                 filePattern="${log-path}/trace-%d{yyyy-MM-dd-HH}.log">
+        <!-- log pattern -->
+        <PatternLayout>
+            <pattern>%d{dd/MM/yyyy HH:mm:ss:SSS} %5p - %m%n</pattern>
+        </PatternLayout>
+
+        <!-- set file size policy -->
+        <Policies>
+            <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            <!-- <SizeBasedTriggeringPolicy size="10 MB" /> -->
+        </Policies>
+        <DefaultRolloverStrategy max="500"/>
+    </RollingFile>
+	
+	 <RollingFile name="report" fileName="${log-path}/trace.log"
+                 filePattern="${log-path}/trace-%d{yyyy-MM-dd-HH}.log">
+        <!-- log pattern -->
+        <PatternLayout>
+            <pattern>%d{dd/MM/yyyy HH:mm:ss:SSS} %5p - %m%n</pattern>
+        </PatternLayout>
+
+        <!-- set file size policy -->
+        <Policies>
+            <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            <!-- <SizeBasedTriggeringPolicy size="10 MB" /> -->
+        </Policies>
+        <DefaultRolloverStrategy max="500"/>
+    </RollingFile> 
+	<!-- file appender -->
+		<RollingFile name="UserCotroller"
+			fileName="${log-path}/UserCotroller.log"
+			filePattern="${log-path}/UserCotroller-%d{yyyy-MM-dd-HH}.log">
+			<!-- log pattern -->
+			<PatternLayout>
+				<pattern>%d{dd/MM/yyyy HH:mm:ss:SSS} %5p - %m%n</pattern>
+			</PatternLayout>
+
+			<!-- set file size policy -->
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+				<!-- <SizeBasedTriggeringPolicy size="10 MB" /> -->
+			</Policies>
+			<DefaultRolloverStrategy max="2500" />
+		</RollingFile>
+		<RollingFile name="calcutation"
+			fileName="${log-path}/calcutation.log"
+			filePattern="${log-path}/calcutation-%d{yyyy-MM-dd-HH}.log">
+			<!-- log pattern -->
+			<PatternLayout>
+				<pattern>%d{dd/MM/yyyy HH:mm:ss:SSS} %5p - %m%n</pattern>
+			</PatternLayout>
+
+			<!-- set file size policy -->
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+				<!-- <SizeBasedTriggeringPolicy size="10 MB" /> -->
+			</Policies>
+			<DefaultRolloverStrategy max="2500" />
+		</RollingFile>
+
+</Appenders>
+
+<Loggers>
+	<Logger name="Dialog.Designer.TraceWriter" level="debug" additivity="false">
+	    <appender-ref ref="trace"/>>
+<!--	    <appender-ref ref="console-log"/>-->
+	</Logger>
+	<Logger name="UserCotroller" level="debug" additivity="false">
+			<appender-ref ref="UserCotroller" />
+			<appender-ref ref="console-log" />
+		</Logger>
+		<Logger name="calcutation" level="debug" additivity="false">
+			<appender-ref ref="calcutation" />
+			<appender-ref ref="console-log" />
+		</Logger>
+	<Logger name="Dialog.Designer.ReportWriter" level="debug" additivity="false">
+	    <appender-ref ref="report"/>
+<!--	    <appender-ref ref="console-log"/>-->
+	</Logger>
+	<Root level="debug" additivity="false">
+<!--        <AppenderRef ref="console-log"/>-->
+    </Root>
+</Loggers>
+</Configuration>
